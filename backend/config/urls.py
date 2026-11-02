@@ -15,11 +15,19 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
+from django.urls import path,include
 from django.conf import settings
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('',include('apps.centros.urls')),
+    path('',include('apps.contacto.urls')),
+    path('',include('apps.gimnasio.urls')),
+    path('',include('apps.mainapp.urls')),
+    path('',include('apps.programas.urls')),
+    path('',include('apps.rutinas.urls')),
+    path('',include('apps.seguimiento.urls')),
+    path('',include('apps.usuarios.urls')),
 ]
 
 # Configurar para cargar imagenes

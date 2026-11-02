@@ -6,6 +6,7 @@
 from .connection import Connect_SQLite
 from core.utils.mysql_to_sqlite import mysql_to_sqlite
 
+
 def init_db():
     # Conexion a la Base de datos
     # Obtener la conexión y el cursor
@@ -31,47 +32,47 @@ def init_db():
 		`id_region_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_region` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_region_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `sexos` (
 		`cod_sexo_pk` char(6) NOT NULL,
 		`nombre_sexo` varchar(100) NOT NULL,
 		PRIMARY KEY (`cod_sexo_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `tipos_documento` (
 		`cod_tipo_documento_pk` char(6) NOT NULL,
 		`nombre_tipo_documento` varchar(100) NOT NULL,
 		PRIMARY KEY (`cod_tipo_documento_pk`) 
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `tipos_sangre` (
 		`cod_tipo_sangre_pk` char(6) NOT NULL,
 		`nombre_tipo_sangre` varchar(100) NOT NULL,
 		PRIMARY KEY (`cod_tipo_sangre_pk`) 
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `estados_civil` (
 		`id_estado_civil_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_estado_civil` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_estado_civil_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `roles` (
 		`id_rol_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_rol` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_rol_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `hospitales` (
 		`cod_hospital_pk` char(6) NOT NULL,
 		`nombre_hospital` varchar(100) NOT NULL,
 		`direccion_hospital` varchar(150) NOT NULL,
 		PRIMARY KEY (`cod_hospital_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `eps` (
 		`cod_eps_pk` char(6) NOT NULL,
@@ -79,40 +80,40 @@ def init_db():
 		`telefono_eps` char(11) NOT NULL,
 		`direccion_eps` varchar(150) NOT NULL,
 		PRIMARY KEY (`cod_eps_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `niveles_administrador` (
 		`id_nivel_administrador_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_nivel_administrador` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_nivel_administrador_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `especialidades_entrenador` (
 		`id_especialidad_entrenador_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_especialidad_entrenador` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_especialidad_entrenador_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `estados_aprendiz` (
 		`id_estado_aprendiz_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_estado_aprendiz` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_estado_aprendiz_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `estados_funcionario` (
 		`id_estado_funcionario_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_estado_funcionario` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_estado_funcionario_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `estados_rutina` (
 		`id_estado_rutina_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_estado_rutina` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_estado_rutina_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `jornadas` (
@@ -120,35 +121,35 @@ def init_db():
 		`nombre_jornada` varchar(100) NOT NULL,
 		`estado_jornada` tinyint(1) NOT NULL,
 		PRIMARY KEY (`id_jornada_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `modalidades` (
 		`id_modalidad_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_modalidad` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_modalidad_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `niveles_actividad_fisica` (
 		`id_nivel_actividad_fisica_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_nivel_actividad_fisica` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_nivel_actividad_fisica_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `niveles_formacion_programa` (
 		`id_niveles_formacion_programa_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_nivel_formacion_programa` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_niveles_formacion_programa_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `niveles_rutina` (
 		`id_nivel_rutina_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_nivel_rutina` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_nivel_rutina_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `objetivos_rutina` (
@@ -156,7 +157,7 @@ def init_db():
 		`nombre_objetivo_rutina` varchar(150) NOT NULL,
 		`descripcion_objetivo` text DEFAULT NULL,
 		PRIMARY KEY (`id_objetivo_rutina_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `partes_cuerpo` (
@@ -164,42 +165,42 @@ def init_db():
 		`nombre_parte_cuerpo` varchar(60) NOT NULL,
 		`descripcion_parte_cuerpo` text DEFAULT NULL,
 		PRIMARY KEY (`id_parte_cuerpo_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `requisitos_programa` (
 		`id_requisito_programa_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_requisito_programa` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_requisito_programa_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `tipos_maquina` (
 		`id_tipo_maquina_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_tipo_maquina` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_tipo_maquina_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `tipos_participacion_musculo` (
 		`id_tipo_participacion_musculo_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_tipo_participacion_musculo` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_tipo_participacion_musculo_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `antecedentes_medicos` (
 		`id_antecedente_medico_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_antecedente_medico` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_antecedente_medico_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `complexiones_fisicas` (
 		`id_complexion_fisica_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_complexion_fisica` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_complexion_fisica_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `departamentos` (
@@ -209,7 +210,7 @@ def init_db():
 		PRIMARY KEY (`cod_departamento_pk`),
 		KEY `id_region_departamento_fk` (`id_region_departamento_fk`),
 		CONSTRAINT `id_region_departamento_fk` FOREIGN KEY (`id_region_departamento_fk`) REFERENCES `regiones` (`id_region_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `municipios` (
@@ -219,7 +220,7 @@ def init_db():
 		PRIMARY KEY (`cod_municipio_pk`),
 		KEY `cod_departamento_municipio_fk` (`cod_departamento_municipio_fk`),
 		CONSTRAINT `cod_departamento_municipio_fk` FOREIGN KEY (`cod_departamento_municipio_fk`) REFERENCES `departamentos` (`cod_departamento_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `centros_formacion` (
@@ -233,7 +234,7 @@ def init_db():
         UNIQUE KEY `cod_centro` (`cod_centro`),
 		KEY `cod_municipio_centro_fk` (`cod_municipio_centro_fk`),
 		CONSTRAINT `cod_municipio_centro_fk` FOREIGN KEY (`cod_municipio_centro_fk`) REFERENCES `municipios` (`cod_municipio_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `sedes` (
@@ -244,7 +245,7 @@ def init_db():
 		PRIMARY KEY (`id_sede_pk`),
 		KEY `id_centro_sede_fk` (`id_centro_sede_fk`),
 		CONSTRAINT `id_centro_sede_fk` FOREIGN KEY (`id_centro_sede_fk`) REFERENCES `centros_formacion` (`id_centro_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `dependencias_funcionario` (
@@ -254,7 +255,7 @@ def init_db():
 		PRIMARY KEY (`id_dependencia_funcionario_pk`),
 		KEY `id_centro_dependencia_fk` (`id_centro_dependencia_fk`),
 		CONSTRAINT `id_centro_dependencia_fk` FOREIGN KEY (`id_centro_dependencia_fk`) REFERENCES `centros_formacion` (`id_centro_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `usuarios` (
@@ -300,15 +301,14 @@ def init_db():
 		CONSTRAINT `id_estado_civil_usuario_fk` FOREIGN KEY (`id_estado_civil_usuario_fk`) REFERENCES `estados_civil` (`id_estado_civil_pk`) ON UPDATE CASCADE,
 		CONSTRAINT `cod_hospital_usuario_fk` FOREIGN KEY (`cod_hospital_usuario_fk`) REFERENCES `hospitales` (`cod_hospital_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_rol_usuario_fk` FOREIGN KEY (`id_rol_usuario_fk`) REFERENCES `roles` (`id_rol_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `estados_contacto` (
 		`id_estado_contacto_pk` INT(11) NOT NULL AUTO_INCREMENT,
 		`nombre_estado` VARCHAR(50) NOT NULL,
 		PRIMARY KEY (`id_estado_contacto_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
-
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `mensajes_contacto` (
 		`id_mensaje_pk` INT(11) NOT NULL AUTO_INCREMENT,
@@ -321,9 +321,21 @@ def init_db():
 		PRIMARY KEY (`id_mensaje_pk`),
 		KEY `id_estado_contacto_fk` (`id_estado_contacto_fk`),
 		CONSTRAINT `id_estado_contacto_fk` FOREIGN KEY (`id_estado_contacto_fk`) REFERENCES `estados_contacto` (`id_estado_contacto_pk`) ON UPDATE CASCADE ON DELETE NO ACTION
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
-
+	CREATE TABLE IF NOT EXISTS `atencion_mensajes` (
+        `id_atencion_mensajes_pk` INT(11) NOT NULL AUTO_INCREMENT,
+        `id_mensaje_fk` INT(11) NOT NULL,
+        `id_administrador_fk` INT(11) NOT NULL,
+        `observacion` TEXT DEFAULT NULL,
+        `id_estado_fk` INT(11) NOT NULL,
+        `fecha` DATETIME NOT NULL,
+		PRIMARY KEY (`id_atencion_mensajes_pk`),
+        CONSTRAINT `id_administrador_fk` FOREIGN KEY (`id_administrador_fk`) REFERENCES `administradores` (`id_administrador_pk`) ON UPDATE CASCADE ON DELETE CASCADE,
+        CONSTRAINT `id_estado_fk` FOREIGN KEY (`id_estado_fk`) REFERENCES `estados_contacto` (`id_estado_contacto_pk`) ON UPDATE CASCADE ON DELETE CASCADE,
+        CONSTRAINT `id_mensaje_fk` FOREIGN KEY (`id_mensaje_fk`) REFERENCES `mensajes_contacto` (`id_mensaje_pk`) ON UPDATE CASCADE ON DELETE CASCADE
+    ) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+    
 	CREATE TABLE IF NOT EXISTS `entrenadores` (
 		`id_entrenador_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`id_usuario_entrenador_fk` int(11) NOT NULL,
@@ -334,7 +346,7 @@ def init_db():
 		KEY `id_especialidad_entrenador_fk` (`id_especialidad_entrenador_fk`),
 		CONSTRAINT `id_especialidad_entrenador_fk` FOREIGN KEY (`id_especialidad_entrenador_fk`) REFERENCES `especialidades_entrenador` (`id_especialidad_entrenador_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_usuario_entrenador_fk` FOREIGN KEY (`id_usuario_entrenador_fk`) REFERENCES `usuarios` (`id_usuario_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `administradores` (
@@ -347,7 +359,7 @@ def init_db():
 		KEY `id_nivel_acceso_administrador_pk` (`id_nivel_acceso_administrador_fk`),
 		CONSTRAINT `id_nivel_acceso_administrador_pk` FOREIGN KEY (`id_nivel_acceso_administrador_fk`) REFERENCES `niveles_administrador` (`id_nivel_administrador_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_usuario_administrador_fk` FOREIGN KEY (`id_usuario_administrador_fk`) REFERENCES `usuarios` (`id_usuario_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `funcionarios` (
@@ -362,7 +374,7 @@ def init_db():
 		CONSTRAINT `id_dependencia_funcionario_fk` FOREIGN KEY (`id_dependencia_funcionario_fk`) REFERENCES `dependencias_funcionario` (`id_dependencia_funcionario_pk`) ON UPDATE CASCADE,
 		CONSTRAINT `id_estado_funcionario_fk` FOREIGN KEY (`id_estado_funcionario_fk`) REFERENCES `estados_funcionario` (`id_estado_funcionario_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_usuario_funcionario_fk` FOREIGN KEY (`id_usuario_funcionario_fk`) REFERENCES `usuarios` (`id_usuario_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `programas_formacion` (
@@ -382,7 +394,7 @@ def init_db():
 		CONSTRAINT `id_centro_formacion_programa_fk` FOREIGN KEY (`id_centro_formacion_programa_fk`) REFERENCES `centros_formacion` (`id_centro_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_nivel_formacion_programa_fk` FOREIGN KEY (`id_nivel_formacion_programa_fk`) REFERENCES `niveles_formacion_programa` (`id_niveles_formacion_programa_pk`) ON UPDATE CASCADE,
 		CONSTRAINT `id_requisito_programa_fk` FOREIGN KEY (`id_requisito_programa_fk`) REFERENCES `requisitos_programa` (`id_requisito_programa_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `fichas_formacion` (
 		`id_ficha_formacion_pk` int(11) NOT NULL AUTO_INCREMENT,
@@ -407,7 +419,7 @@ def init_db():
 		CONSTRAINT `id_modalidad_ficha_fk` FOREIGN KEY (`id_modalidad_ficha_fk`) REFERENCES `modalidades` (`id_modalidad_pk`) ON UPDATE CASCADE,
 		CONSTRAINT `id_programa_ficha_fk` FOREIGN KEY (`id_programa_ficha_fk`) REFERENCES `programas_formacion` (`id_programa_pk`) ON UPDATE CASCADE,
 		CONSTRAINT `id_sede_ficha_fk` FOREIGN KEY (`id_sede_ficha_fk`) REFERENCES `sedes` (`id_sede_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `aprendices` (
 		`id_aprendiz_pk` int(11) NOT NULL AUTO_INCREMENT,
@@ -418,7 +430,7 @@ def init_db():
         KEY `id_estado_aprendiz_fk` (`id_estado_aprendiz_fk`),
 		CONSTRAINT `id_estado_aprendiz_fk` FOREIGN KEY (`id_estado_aprendiz_fk`) REFERENCES `estados_aprendiz` (`id_estado_aprendiz_pk`) ON UPDATE CASCADE,
 		CONSTRAINT `id_usuario_aprendiz_fk` FOREIGN KEY (`id_usuario_aprendiz_fk`) REFERENCES `usuarios` (`id_Usuario_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `fichas_usuarios` (
 		`id_ficha_usuario_pk` INT(11) NOT NULL AUTO_INCREMENT,
@@ -430,13 +442,13 @@ def init_db():
 		KEY `id_usuario_ficha_fk` (`id_usuario_ficha_fk`),
 		CONSTRAINT `id_ficha_fk` FOREIGN KEY (`id_ficha_fk`) REFERENCES `fichas_formacion` (`id_ficha_formacion_pk`) ON UPDATE CASCADE ON DELETE NO ACTION,
 		CONSTRAINT `id_usuario_ficha_fk` FOREIGN KEY (`id_usuario_ficha_fk`) REFERENCES `usuarios` (`id_usuario_pk`) ON UPDATE CASCADE ON DELETE NO ACTION
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 	
 	CREATE TABLE IF NOT EXISTS `estados_maquina` (
 		`id_estado_maquina_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_estado_maquina` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_estado_maquina_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 	
 	CREATE TABLE IF NOT EXISTS `maquinas` (
 		`id_maquina_pk` int(11) NOT NULL AUTO_INCREMENT,
@@ -451,7 +463,7 @@ def init_db():
 		KEY `id_estado_maquina_fk` (`id_estado_maquina_fk`),
 		CONSTRAINT `id_tipo_maquina_fk` FOREIGN KEY (`id_tipo_maquina_fk`) REFERENCES `tipos_maquina` (`id_tipo_maquina_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_estado_maquina_fk` FOREIGN KEY (`id_estado_maquina_fk`) REFERENCES `estados_maquina` (`id_estado_maquina_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `musculos` (
@@ -462,7 +474,7 @@ def init_db():
 		PRIMARY KEY (`id_musculo_pk`),
 		KEY `id_parte_cuerpo_musculo_fk` (`id_parte_cuerpo_musculo_fk`),
 		CONSTRAINT `id_parte_cuerpo_musculo_fk` FOREIGN KEY (`id_parte_cuerpo_musculo_fk`) REFERENCES `partes_cuerpo` (`id_parte_cuerpo_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `ejercicios` (
@@ -477,7 +489,7 @@ def init_db():
 		KEY `id_musculo_ejercicio_fk` (`id_musculo_ejercicio_fk`),
 		CONSTRAINT `id_maquina_ejercicio_fk` FOREIGN KEY (`id_maquina_ejercicio_fk`) REFERENCES `maquinas` (`id_maquina_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_musculo_ejercicio_fk` FOREIGN KEY (`id_musculo_ejercicio_fk`) REFERENCES `musculos` (`id_musculo_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 
 	CREATE TABLE IF NOT EXISTS `ejercicios_musculo` (
@@ -492,7 +504,7 @@ def init_db():
 		CONSTRAINT `id_ejercicio_fk` FOREIGN KEY (`id_ejercicio_fk`) REFERENCES `ejercicios` (`id_ejercicio_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_musculo_fk` FOREIGN KEY (`id_musculo_fk`) REFERENCES `musculos` (`id_musculo_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_tipo_participacion_musculo_fk` FOREIGN KEY (`id_tipo_participacion_musculo_fk`) REFERENCES `tipos_participacion_musculo` (`id_tipo_participacion_musculo_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `rutinas` (
 		`id_rutina_pk` int(11) NOT NULL AUTO_INCREMENT,
@@ -507,7 +519,7 @@ def init_db():
 		CONSTRAINT `id_estado_rutina_fk` FOREIGN KEY (`id_estado_rutina_fk`) REFERENCES `estados_rutina` (`id_estado_rutina_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_niv_rutina_fk` FOREIGN KEY (`id_nivel_rutina_fk`) REFERENCES `niveles_rutina` (`id_nivel_rutina_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_objeti_rutina_fk` FOREIGN KEY (`id_objetivo_rutina_fk`) REFERENCES `objetivos_rutina` (`id_objetivo_rutina_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `detalles_rutina` (
 		`id_detalle_rutina_pk` int(11) NOT NULL AUTO_INCREMENT,
@@ -522,7 +534,7 @@ def init_db():
 		KEY `id_ejercicio_rutina_fk` (`id_ejercicio_rutina_fk`),
 		CONSTRAINT `id_ejercicio_rutina_fk` FOREIGN KEY (`id_ejercicio_rutina_fk`) REFERENCES `ejercicios` (`id_ejercicio_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_rutina_per_fk` FOREIGN KEY (`id_rutina_fk`) REFERENCES `rutinas` (`id_rutina_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `horarios` (
 		`id_horario_pk` int(11) NOT NULL AUTO_INCREMENT,
@@ -537,13 +549,13 @@ def init_db():
 		KEY `id_entrenador_horario_fk` (`id_entrenador_horario_fk`),
 		CONSTRAINT `id_entrenador_horario_fk` FOREIGN KEY (`id_entrenador_horario_fk`) REFERENCES `entrenadores` (`id_entrenador_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_jornada_horario_fk` FOREIGN KEY (`id_jornada_horario_fk`) REFERENCES `jornadas` (`id_jornada_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `estados_asignacion` (
 		`id_estado_asignacion_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_estado_asignacion` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_estado_asignacion_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 	
 	CREATE TABLE IF NOT EXISTS `asignaciones_rutina_usuario` (
 		`id_asignacion_rutina_usuario_pk` int(11) NOT NULL AUTO_INCREMENT,
@@ -562,7 +574,7 @@ def init_db():
 		CONSTRAINT `id_rutina_fk` FOREIGN KEY (`id_rutina_fk`) REFERENCES `rutinas` (`id_rutina_pk`) ON UPDATE CASCADE,
 		CONSTRAINT `id_usuario_fk` FOREIGN KEY (`id_usuario_fk`) REFERENCES `aprendices` (`id_aprendiz_pk`) ON UPDATE CASCADE,
 		CONSTRAINT `id_estado_asignacion_rutina_fk` FOREIGN KEY (`id_estado_asignacion_rutina_fk`) REFERENCES `estados_asignacion` (`id_estado_asignacion_pk`) ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoD CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `asistencias` (
 		`id_asistencia_pk` int(11) NOT NULL AUTO_INCREMENT,
@@ -578,7 +590,7 @@ def init_db():
 		CONSTRAINT `id_aprendiz_asistencia_fk` FOREIGN KEY (`id_aprendiz_asistencia_fk`) REFERENCES `aprendices` (`id_aprendiz_pk`) ON UPDATE CASCADE,
 		CONSTRAINT `id_entrenador_asistencia_fk` FOREIGN KEY (`id_entrenador_asistencia_fk`) REFERENCES `entrenadores` (`id_entrenador_pk`) ON UPDATE CASCADE,
 		CONSTRAINT `id_rutina_asistencia_fk` FOREIGN KEY (`id_rutina_asistencia_fk`) REFERENCES `rutinas` (`id_rutina_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `evaluaciones_fisicas` (
 		`id_evaluacion_fisica_pk` int(11) NOT NULL AUTO_INCREMENT,
@@ -609,13 +621,13 @@ def init_db():
 		CONSTRAINT `id_usuario_evaluacion_fk` FOREIGN KEY (`id_usuario_evaluacion_fk`) REFERENCES `usuarios` (`id_usuario_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_entrenador_encargado_evaluacion_fk` FOREIGN KEY (`id_entrenador_encargado_evaluacion_fk`) REFERENCES `entrenadores` (`id_entrenador_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_nivel_actividad_fisica_evaluacion_fk` FOREIGN KEY (`id_nivel_actividad_fisica_evaluacion_fk`) REFERENCES `niveles_actividad_fisica` (`id_nivel_actividad_fisica_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	CREATE TABLE IF NOT EXISTS `estados_seguimiento` (
 		`id_estado_seguimiento_pk` int(11) NOT NULL AUTO_INCREMENT,
 		`nombre_estado_seguimiento` varchar(100) NOT NULL,
 		PRIMARY KEY (`id_estado_seguimiento_pk`)
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 	
 	CREATE TABLE IF NOT EXISTS `seguimientos_progreso_usuario` (
 		`id_seguimiento_progreso_usuario_pk` int(11) NOT NULL AUTO_INCREMENT,
@@ -635,7 +647,7 @@ def init_db():
 		CONSTRAINT `id_estado_seguimiento_fk` FOREIGN KEY (`id_estado_seguimiento_fk`) REFERENCES `estados_seguimiento` (`id_estado_seguimiento_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_objetivo_actual_fk` FOREIGN KEY (`id_objetivo_actual_fk`) REFERENCES `objetivos_rutina` (`id_objetivo_rutina_pk`) ON DELETE NO ACTION ON UPDATE CASCADE,
 		CONSTRAINT `id_evaluacion_fisica_fk` FOREIGN KEY (`id_evaluacion_fisica_fk`) REFERENCES `evaluaciones_fisicas` (`id_evaluacion_fisica_pk`) ON DELETE NO ACTION ON UPDATE CASCADE
-	) ENGINE = InnoDB DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
+	) ENGINE = InnoDB CHARSET = utf8mb4 COLLATE = utf8mb4_spanish2_ci;
 
 	INSERT OR IGNORE INTO `regiones` (`id_region_pk`, `nombre_region`) VALUES
 		(1, 'Región Caribe'),
