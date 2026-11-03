@@ -20,7 +20,7 @@ class EstadosContacto(models.Model):
         db_table = "estados_contacto"
         verbose_name = "Estado de contacto"
         verbose_name_plural = "Estados de contacto"
-        ordering = ['nombre_estado']
+        ordering = ["nombre_estado"]
 
     def __str__(self):
         return str(self.nombre_estado)
@@ -36,9 +36,7 @@ class MensajesContacto(models.Model):
     )
     titulo_mensaje = models.CharField(max_length=150, verbose_name="Título del mensaje")
     contenido_mensaje = models.TextField(verbose_name="Contenido del mensaje")
-    fecha_envio = models.DateTimeField(
-        auto_now_add=True, verbose_name="Fecha de envío"
-    )
+    fecha_envio = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de envío")
     id_estado_contacto_fk = models.ForeignKey(
         "EstadosContacto",
         on_delete=models.CASCADE,
@@ -50,43 +48,44 @@ class MensajesContacto(models.Model):
         db_table = "mensajes_contacto"
         verbose_name = "Mensaje de contacto"
         verbose_name_plural = "Mensajes de contacto"
-        ordering = ['-fecha_envio']
+        ordering = ["-fecha_envio"]
 
     def __str__(self):
         return str(self.titulo_mensaje)
+
 
 class AtencionMensajes(models.Model):
     id_atencion_mensajes_pk = models.AutoField(
         primary_key=True, verbose_name="ID de atención de mensajes"
     )
     id_mensaje_fk = models.ForeignKey(
-        'MensajesContacto',
+        "MensajesContacto",
         on_delete=models.CASCADE,
-        db_column='id_mensaje_fk',
-        verbose_name="Mensaje de contacto"
+        db_column="id_mensaje_fk",
+        verbose_name="Mensaje de contacto",
     )
     id_administrador_fk = models.ForeignKey(
-        'usuarios.Administradores',
+        "usuarios.Administradores",
         on_delete=models.CASCADE,
-        db_column='id_administrador_fk',
-        verbose_name="Administrador"
+        db_column="id_administrador_fk",
+        verbose_name="Administrador",
     )
     observacion = models.TextField(
         default=None, blank=True, null=True, verbose_name="Observación"
     )
     id_estado_fk = models.ForeignKey(
-        'EstadosContacto',
+        "EstadosContacto",
         on_delete=models.CASCADE,
-        db_column='id_estado_fk',
-        verbose_name="Estado de contacto"
+        db_column="id_estado_fk",
+        verbose_name="Estado de contacto",
     )
     fecha = models.DateTimeField(auto_now_add=True, verbose_name="Fecha de atención")
 
     class Meta:
-        db_table = 'atencion_mensajes'
+        db_table = "atencion_mensajes"
         verbose_name = "Atención de mensaje"
         verbose_name_plural = "Atenciones de mensajes"
-        ordering = ['-fecha']
+        ordering = ["-fecha"]
 
     def __str__(self):
         return f"Atención #{self.id_atencion_mensajes_pk} - {self.id_mensaje_fk}"

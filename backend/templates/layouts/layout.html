@@ -1,70 +1,132 @@
 {% load static %}
 <!DOCTYPE html>
-<html>
-    <html lang="es">
-    <head>
-        <meta charset="utf-8">
-        <title>
-            {% block title %}
-            <!-- Titulo de cada pagina en concreto-->
-            {% endblock %}
-            |- ADSO SENA
-        </title>
-        {% load static %}<!--carga de ficheros estaticos-->
-        <link rel="stylesheet" type="text/css" href="{% static 'css/styles.css' %}"/>
-    </head>
-    <body>
-        <!-- Cabecera de la Página -->
-        <header>
-            <div id="logotipo"><!--se usa id porque sera algo que estara una vez en la pagina-->
-                <!--Logo Django-->
-                <img src="{% static 'img/logo-django.png' %}" />
-                <h1> Proyecto con Django </h1>
-            </div>
-        </header>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}AgroFit{% endblock %}</title>
+    <link rel="icon" type="image/png" href="{% static 'img/sena-logo.png' %}">
+
+    {# Estilos compartidos del frontend #}
+    <link rel="stylesheet" href="{% static 'css/reset.css' %}">
+    <link rel="stylesheet" href="{% static 'css/variables.css' %}">
+    <link rel="stylesheet" href="{% static 'css/general.css' %}">
+    <link rel="stylesheet" href="{% static 'css/navbar.css' %}">
+    <link rel="stylesheet" href="{% static 'css/buttons.css' %}">
+    <link rel="stylesheet" href="{% static 'css/footer.css' %}">
+    <link rel="stylesheet" href="{% static 'css/responsive.css' %}">
+    <link rel="stylesheet" href="{% static 'css/reveal.css' %}">
+    {% block extra_css %}{% endblock %}
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'img/agrofit-logo.png' %}" alt="Logo AgroFit" class="logo-agrofit">
+            </a>
+        </div>
+
         <nav>
-            <ul>
-                <li>
-                    <a href="{% url 'index' %}">Inicio</a>
-                </li>
-                {% if user.email %}
-                    <li>
-                        <ul>
-                            {%for category in categories%}
-                                <li>
-                                    <a href="{% url 'category' category.0 %}">{{category.1}}</a>
-                                </li>
-                            {%endfor%}
-                        </ul>
-                    </li>
-                    {%for page in pages%}
-                        <li>
-                            <a href="{% url 'page' page.2 %}">{{page.1}}</a>
-                        </li>
-                    {%endfor%}
-                        <li>
-                            <a href="{% url 'logout' %}">Cerrar Sesión</a>
-                        </li>
-                {%else%}
-                    <li>
-                        <a href="{% url 'register' %}">Registro</a>
-                    </li>
-                    <li>
-                        <a href="{% url 'login' %}">Login</a>
-                    </li>
-                {% endif %}
-            </ul>
+            <div class="navbar-links">
+                <ul>
+                    <li><a href="{% url 'index' %}">INICIO</a></li>
+                    <li><a href="{% url 'about' %}">ACERCA DE</a></li>
+                    <li><a href="{% url 'index' %}#contact">UBICACIÓN & CONTACTO</a></li>
+
+                    {% if user.is_authenticated %}
+                        {% if es_aprendiz %}
+                            <li><a href="{% url 'rutinas_list' %}">MI RUTINA</a></li>
+                            <li><a href="{% url 'seguimientos_list' %}">MI PROGRESO</a></li>
+                        {% endif %}
+
+                        {% if es_entrenador %}
+                            <li><a href="{% url 'asignaciones_list' %}">ASIGNACIONES</a></li>
+                            <li><a href="{% url 'evaluaciones_list' %}">EVALUACIONES</a></li>
+                        {% endif %}
+
+                        {% if es_administrador %}
+                            <li><a href="{% url 'usuarios_list' %}">USUARIOS</a></li>
+                            <li><a href="/admin/">ADMIN</a></li>
+                        {% endif %}
+
+                        {% if es_funcionario %}
+                            <li><a href="{% url 'fichas_list' %}">FICHAS</a></li>
+                        {% endif %}
+                    {% endif %}
+                </ul>
+            </div>
         </nav>
-        <div id="content">
-            <div class="box">
-                <h2 class="title"></h2>
-                {%block content %}
-                    <strong>Contenido del bloque original!!</strong>
-                {% endblock %}
+
+        <div class="header-buttons">
+            {% if user.is_authenticated %}
+                <span class="user-chip">
+                    {% if usuario %}{{ usuario.nombres_usuario }}{% else %}{{ user.username }}{% endif %}
+                    {% if rol_nombre %} · {{ rol_nombre }}{% endif %}
+                </span>
+                <a class="btn-login-header" href="{% url 'logout' %}">Cerrar sesión</a>
+            {% else %}
+                <a class="btn-login-header" href="{% url 'login' %}">Iniciar Sesión</a>
+                <a class="btn-register-header" href="{% url 'register' %}">Registrarse</a>
+            {% endif %}
+        </div>
+
+        <button class="menu-movil" onclick="open_nav()" type="button">Menú</button>
+
+        <div class="overlay" id="mobile-menu">
+            <a onclick="close_nav()" href="#" class="close">
+                <ion-icon name="close"></ion-icon>
+            </a>
+            <div class="overlay-content">
+                <a href="{% url 'index' %}">INICIO</a>
+                <a href="{% url 'about' %}">ACERCA DE</a>
+                <a onclick="close_nav()" href="{% url 'index' %}#contact">UBICACIÓN & CONTACTO</a>
+
+                {% if user.is_authenticated %}
+                    <a href="{% url 'logout' %}">Cerrar sesión</a>
+                {% else %}
+                    <a href="{% url 'login' %}">Iniciar Sesión</a>
+                    <a href="{% url 'register' %}">Registrarse</a>
+                {% endif %}
             </div>
         </div>
-        <footer>
-            Programación con Django - ADSO 2023 &copy; Joan Areiza - {% now "d/m/Y h:m:s" %}
-        </footer>
-    </body>
+    </header>
+
+    {% if messages %}
+        <div class="django-messages">
+            {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+            {% endfor %}
+        </div>
+    {% endif %}
+
+    {% block content %}{% endblock %}
+
+    <footer class="footer">
+        <div data-reveal="fade-up" data-reveal-delay="1">
+            <h4>También nos encontrarás en:</h4>
+            <div class="icons" data-reveal="fade-up" data-reveal-delay="2">
+                <ion-icon name="logo-facebook"></ion-icon>
+                <ion-icon name="logo-linkedin"></ion-icon>
+                <ion-icon name="logo-youtube"></ion-icon>
+                <ion-icon name="logo-instagram"></ion-icon>
+                <ion-icon name="logo-x"></ion-icon>
+                <ion-icon name="logo-tiktok"></ion-icon>
+            </div>
+            <p>@SENAcomunica</p>
+            <a href="https://www.sena.edu.co" target="_blank" rel="noopener">www.sena.edu.co</a>
+        </div>
+        <div data-reveal="fade-up" data-reveal-delay="3">
+            <p>&copy; {% now "Y" %} Todos los derechos reservados |
+                <a href="https://www.sena.edu.co/" target="_blank" rel="noopener">SENA</a>
+            </p>
+        </div>
+    </footer>
+
+    <script src="{% static 'js/navbar.js' %}" defer></script>
+    <script src="{% static 'js/reveal.js' %}" defer></script>
+    {% block extra_js %}{% endblock %}
+
+    <script type="module" src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@8.0.13/dist/ionicons/ionicons.js"></script>
+</body>
 </html>

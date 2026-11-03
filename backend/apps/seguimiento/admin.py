@@ -7,6 +7,8 @@ from .models import (
     EstadosSeguimiento,
     SeguimientosProgresoUsuario,
 )
+
+
 class EstadosAsignacionAdmin(admin.ModelAdmin):
     list_display = ("id_estado_asignacion_pk", "nombre_estado_asignacion")
     search_fields = ("nombre_estado_asignacion",)
@@ -22,7 +24,10 @@ class AsignacionesRutinaUsuarioAdmin(admin.ModelAdmin):
         "id_estado_asignacion_rutina_fk",
         "id_entrenador_asigna_rutina_fk",
     )
-    list_filter = ("id_estado_asignacion_rutina_fk", "fecha_hora_inicio_asignacion_rutina")
+    list_filter = (
+        "id_estado_asignacion_rutina_fk",
+        "fecha_hora_inicio_asignacion_rutina",
+    )
     search_fields = (
         "id_usuario_fk__id_usuario_aprendiz_fk__nombres_usuario",
         "id_usuario_fk__id_usuario_aprendiz_fk__apellidos_usuario",
@@ -87,7 +92,11 @@ class SeguimientosProgresoUsuarioAdmin(admin.ModelAdmin):
         "id_estado_seguimiento_fk",
         "id_objetivo_actual_fk",
     )
-    list_filter = ("id_estado_seguimiento_fk", "fecha_registro_progreso", "id_objetivo_actual_fk")
+    list_filter = (
+        "id_estado_seguimiento_fk",
+        "fecha_registro_progreso",
+        "id_objetivo_actual_fk",
+    )
     search_fields = (
         "observacion_progreso_usuario",
         "logros_avances",
@@ -95,10 +104,10 @@ class SeguimientosProgresoUsuarioAdmin(admin.ModelAdmin):
     )
     date_hierarchy = "fecha_registro_progreso"
 
-admin.site.register(EstadosAsignacion,EstadosAsignacionAdmin)
-admin.site.register(AsignacionesRutinaUsuario,AsignacionesRutinaUsuarioAdmin)
-admin.site.register(Asistencias,AsistenciasAdmin)
-admin.site.register(EvaluacionesFisicas,EvaluacionesFisicasAdmin)
-admin.site.register(EstadosSeguimiento,EstadosSeguimientoAdmin)
-admin.site.register(SeguimientosProgresoUsuario,SeguimientosProgresoUsuarioAdmin)
 
+admin.site.register(EstadosAsignacion, EstadosAsignacionAdmin)
+admin.site.register(AsignacionesRutinaUsuario, AsignacionesRutinaUsuarioAdmin)
+admin.site.register(Asistencias, AsistenciasAdmin)
+admin.site.register(EvaluacionesFisicas, EvaluacionesFisicasAdmin)
+admin.site.register(EstadosSeguimiento, EstadosSeguimientoAdmin)
+admin.site.register(SeguimientosProgresoUsuario, SeguimientosProgresoUsuarioAdmin)

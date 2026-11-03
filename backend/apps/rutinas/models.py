@@ -22,7 +22,7 @@ class EstadosRutina(models.Model):
         db_table = "estados_rutina"
         verbose_name = "Estado de rutina"
         verbose_name_plural = "Estados de rutina"
-        ordering = ['nombre_estado_rutina']
+        ordering = ["nombre_estado_rutina"]
 
     def __str__(self):
         return str(self.nombre_estado_rutina)
@@ -40,7 +40,7 @@ class NivelesActividadFisica(models.Model):
         db_table = "niveles_actividad_fisica"
         verbose_name = "Nivel de actividad física"
         verbose_name_plural = "Niveles de actividad física"
-        ordering = ['nombre_nivel_actividad_fisica']
+        ordering = ["nombre_nivel_actividad_fisica"]
 
     def __str__(self):
         return str(self.nombre_nivel_actividad_fisica)
@@ -58,7 +58,7 @@ class NivelesRutina(models.Model):
         db_table = "niveles_rutina"
         verbose_name = "Nivel de rutina"
         verbose_name_plural = "Niveles de rutina"
-        ordering = ['nombre_nivel_rutina']
+        ordering = ["nombre_nivel_rutina"]
 
     def __str__(self):
         return str(self.nombre_nivel_rutina)
@@ -79,7 +79,7 @@ class ObjetivosRutina(models.Model):
         db_table = "objetivos_rutina"
         verbose_name = "Objetivo de rutina"
         verbose_name_plural = "Objetivos de rutina"
-        ordering = ['nombre_objetivo_rutina']
+        ordering = ["nombre_objetivo_rutina"]
 
     def __str__(self):
         return str(self.nombre_objetivo_rutina)
@@ -100,7 +100,7 @@ class PartesCuerpo(models.Model):
         db_table = "partes_cuerpo"
         verbose_name = "Parte del cuerpo"
         verbose_name_plural = "Partes del cuerpo"
-        ordering = ['nombre_parte_cuerpo']
+        ordering = ["nombre_parte_cuerpo"]
 
     def __str__(self):
         return str(self.nombre_parte_cuerpo)
@@ -118,7 +118,7 @@ class TiposParticipacionMusculo(models.Model):
         db_table = "tipos_participacion_musculo"
         verbose_name = "Tipo de participación muscular"
         verbose_name_plural = "Tipos de participación muscular"
-        ordering = ['nombre_tipo_participacion_musculo']
+        ordering = ["nombre_tipo_participacion_musculo"]
 
     def __str__(self):
         return str(self.nombre_tipo_participacion_musculo)
@@ -136,7 +136,7 @@ class ComplexionesFisicas(models.Model):
         db_table = "complexiones_fisicas"
         verbose_name = "Complexión física"
         verbose_name_plural = "Complexiones físicas"
-        ordering = ['nombre_complexion_fisica']
+        ordering = ["nombre_complexion_fisica"]
 
     def __str__(self):
         return str(self.nombre_complexion_fisica)
@@ -159,7 +159,7 @@ class Musculos(models.Model):
         db_table = "musculos"
         verbose_name = "Músculo"
         verbose_name_plural = "Músculos"
-        ordering = ['nombre_musculo']
+        ordering = ["nombre_musculo"]
 
     def __str__(self):
         return str(self.nombre_musculo)
@@ -193,7 +193,7 @@ class Ejercicios(models.Model):
         db_table = "ejercicios"
         verbose_name = "Ejercicio"
         verbose_name_plural = "Ejercicios"
-        ordering = ['nombre_ejercicio']
+        ordering = ["nombre_ejercicio"]
 
     def __str__(self):
         return str(self.nombre_ejercicio)
@@ -226,7 +226,7 @@ class EjerciciosMusculo(models.Model):
         db_table = "ejercicios_musculo"
         verbose_name = "Participación muscular en ejercicio"
         verbose_name_plural = "Participaciones musculares en ejercicios"
-        ordering = ['id_ejercicio_fk']
+        ordering = ["id_ejercicio_fk"]
 
     def __str__(self):
         return f"{self.id_ejercicio_fk} - {self.id_musculo_fk} ({self.id_tipo_participacion_musculo_fk})"
@@ -258,7 +258,7 @@ class Rutinas(models.Model):
         db_table = "rutinas"
         verbose_name = "Rutina"
         verbose_name_plural = "Rutinas"
-        ordering = ['nombre_rutina']
+        ordering = ["nombre_rutina"]
 
     def __str__(self):
         return str(self.nombre_rutina)
@@ -296,7 +296,7 @@ class DetallesRutina(models.Model):
         db_table = "detalles_rutina"
         verbose_name = "Detalle de rutina"
         verbose_name_plural = "Detalles de rutina"
-        ordering = ['id_detalle_rutina_pk']
+        ordering = ["id_detalle_rutina_pk"]
 
     def __str__(self):
         return f"Rutina {self.id_rutina_fk} - {self.id_ejercicio_rutina_fk} ({self.series_rutina}x{self.repeticiones_rutina})"

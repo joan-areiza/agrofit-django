@@ -1,11 +1,17 @@
 from django.contrib import admin
 from .models import TiposMaquina, EstadosMaquina, Maquinas, Horarios
+
+
 class TiposMaquinaAdmin(admin.ModelAdmin):
     list_display = ("id_tipo_maquina_pk", "nombre_tipo_maquina")
     search_fields = ("nombre_tipo_maquina",)
+
+
 class EstadosMaquinaAdmin(admin.ModelAdmin):
     list_display = ("id_estado_maquina_pk", "nombre_estado_maquina")
     search_fields = ("nombre_estado_maquina",)
+
+
 class MaquinasAdmin(admin.ModelAdmin):
     list_display = (
         "id_maquina_pk",
@@ -16,6 +22,8 @@ class MaquinasAdmin(admin.ModelAdmin):
     )
     list_filter = ("id_estado_maquina_fk", "id_tipo_maquina_fk")
     search_fields = ("cod_inventario", "nombre_maquina", "descripcion_maquina")
+
+
 class HorariosAdmin(admin.ModelAdmin):
     list_display = (
         "id_horario_pk",
@@ -32,7 +40,8 @@ class HorariosAdmin(admin.ModelAdmin):
         "id_entrenador_horario_fk__id_usuario_entrenador_fk__apellidos_usuario",
     )
 
-admin.site.register(TiposMaquina,TiposMaquinaAdmin)
-admin.site.register(EstadosMaquina,EstadosMaquinaAdmin)
-admin.site.register(Maquinas,MaquinasAdmin)
-admin.site.register(Horarios,HorariosAdmin)
+
+admin.site.register(TiposMaquina, TiposMaquinaAdmin)
+admin.site.register(EstadosMaquina, EstadosMaquinaAdmin)
+admin.site.register(Maquinas, MaquinasAdmin)
+admin.site.register(Horarios, HorariosAdmin)

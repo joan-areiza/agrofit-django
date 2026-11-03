@@ -3,7 +3,7 @@ from core.components.loading import loading
 from core.components.clear import clear
 from data import queries as get
 from core.validators import validators as val
-from cli.menus.role_menu import show_role_menu
+from backend.cli.role_menu import show_role_menu
 
 """
 8:00 am a 5:00 pm Lunes a Viernes
