@@ -1,4 +1,4 @@
-from backend.cli.menu import show_menu
+from cli.menu import show_menu
 
 # Componentes
 from core.components.loading import loading, typewriter

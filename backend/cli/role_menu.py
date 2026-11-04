@@ -1,7 +1,7 @@
-from backend.cli.learner_menu import learner_menu
-from backend.cli.coach_menu import coach_menu
-from backend.cli.staff_menu import staff_menu
-from backend.cli.admin_menu import admin_menu
+from cli.learner_menu import learner_menu
+from cli.coach_menu import coach_menu
+from cli.staff_menu import staff_menu
+from cli.admin_menu import admin_menu
 
 
 def show_role_menu(role, user):

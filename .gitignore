@@ -1,16 +1,16 @@
 
 # Entorno virtual
-.venv/
+#.venv/
 
 # Python
 __pycache__/
 
 # Variables de entorno
-.env
+#.env
 
 # Django
-static/
-media/
+#static/
+#media/
 
 # Base de datos
-*.db
+#*.db
