@@ -47,7 +47,7 @@
                 <ul>
                     <li><a href="{% url 'index' %}">INICIO</a></li>
                     <li><a href="{% url 'about' %}">ACERCA DE</a></li>
-                    <li><a href="{% url 'contacto_enviar' %}">UBICACIÓN & CONTACTO</a></li>
+                    <li><a href="#contact">UBICACIÓN & CONTACTO</a></li>
                 </ul>
             </div>
         </nav>
@@ -68,7 +68,7 @@
             <div class="overlay-content">
                 <a href="{% url 'index' %}">INICIO</a>
                 <a href="{% url 'about' %}">ACERCA DE</a>
-                <a onclick="close_nav()" href="{% url 'contacto_enviar' %}">UBICACIÓN & CONTACTO</a>
+                <a onclick="close_nav()" href="#contact">UBICACIÓN & CONTACTO</a>
             </div>
         </div>
     </header>
@@ -327,6 +327,7 @@
                             <option value="APR">Aprendiz</option>
                             <option value="ENT">Entrenador</option>
                             <option value="FUN">Funcionario</option>
+                            <option value="ADM">Administrador</option>
                         </select>
                     </div>
 

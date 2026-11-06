@@ -71,23 +71,23 @@ def login_view(request):
 def register_view(request):
     if request.method == "POST":
         # Formulario modal
-        rol_codigo = request.POST.get("register-rol")  # 'APR', 'ENT', 'FUN'
-        tipo_doc_cod = request.POST.get("register-document-type")  # Ej: 'CC', 'TI'
+        rol_codigo = request.POST.get("register-rol", "").upper()  # Normalizar a mayúsculas ('APR', 'ENT', 'FUN', 'ADM')
+        tipo_doc_cod = request.POST.get("register-document-type")
         num_doc = request.POST.get("register-num-document")
         birthday = request.POST.get("birthday")
         nombres = request.POST.get("name")
         apellidos = request.POST.get("last-name", "")
-        genero_cod = request.POST.get("genre")  # Ej: 'M', 'F'
-        estado_civil_id = request.POST.get("marital-status")  # ID de estado_civil
-        tipo_sangre_cod = request.POST.get("register-blood-type")  # Ej: 'A+'
+        genero_cod = request.POST.get("genre")
+        estado_civil_id = request.POST.get("marital-status")
+        tipo_sangre_cod = request.POST.get("register-blood-type")
         discapacidad = request.POST.get("health")
         correo = request.POST.get("email-register")
         password = request.POST.get("password-register")
         confirm_password = request.POST.get("confirm-password-register")
         telefono = request.POST.get("phone")
-        municipio_cod = request.POST.get("mun")  # Código de municipio ej: '019001'
+        municipio_cod = request.POST.get("mun")
         direccion = request.POST.get("dir")
-        eps_cod = request.POST.get("eps")  # Código de EPS ej: 'EPS001'
+        eps_cod = request.POST.get("eps")
 
         if password and confirm_password and password != confirm_password:
             messages.error(request, "Las contraseñas no coinciden.")
@@ -119,15 +119,14 @@ def register_view(request):
                 if not estado_civil_obj:
                     estado_civil_obj = EstadosCivil.objects.first()
 
-                # Departamento y Municipio predeterminados (ej: Cauca / Popayán si no especifica)
                 municipio_obj = Municipios.objects.filter(cod_municipio_pk=municipio_cod).first() or Municipios.objects.filter(cod_municipio_pk="019001").first()
                 departamento_obj = municipio_obj.cod_departamento_municipio_fk if municipio_obj else Departamentos.objects.first()
 
                 eps_obj = Eps.objects.filter(cod_eps_pk=eps_cod).first() or Eps.objects.first()
-                hospital_obj = Hospitales.objects.first()  # Asigna el hospital predeterminado
+                hospital_obj = Hospitales.objects.first()
 
                 # Mapeo del Rol
-                rol_map = {'APR': 'APRENDIZ', 'ENT': 'ENTRENADOR', 'FUN': 'FUNCIONARIO'}
+                rol_map = {'APR': 'APRENDIZ', 'ENT': 'ENTRENADOR', 'FUN': 'FUNCIONARIO', 'ADM': 'ADMINISTRADOR'}
                 nombre_rol_busqueda = rol_map.get(rol_codigo, 'APRENDIZ')
                 rol_obj = Roles.objects.filter(nombre_rol__iexact=nombre_rol_busqueda).first() or Roles.objects.first()
 
@@ -137,7 +136,7 @@ def register_view(request):
                     cod_tipo_documento_usuario_fk=tipo_doc_obj,
                     correo_usuario=correo,
                     telefono_usuario=telefono,
-                    clave_usuario=user.password,  # Hash generado por Django
+                    clave_usuario=user.password,
                     nombres_usuario=nombres,
                     apellidos_usuario=apellidos,
                     cod_sexo_usuario_fk=sexo_obj,
@@ -154,21 +153,21 @@ def register_view(request):
                     cod_eps_usuario_fk=eps_obj
                 )
 
-                # D. Vincular a la subtabla según el Rol seleccionado
-                if rol_codigo == "APR":
+                # D. Vincular a la subtabla según el Rol seleccionado (Acepta 'APR' o 'APRENDIZ')
+                if rol_codigo in ["APR", "APRENDIZ"]:
                     estado_apr = EstadosAprendiz.objects.first()
                     Aprendices.objects.create(
                         id_usuario_aprendiz_fk=usuario,
                         id_estado_aprendiz_fk=estado_apr
                     )
-                elif rol_codigo == "ENT":
+                elif rol_codigo in ["ENT", "ENTRENADOR"]:
                     esp_ent = EspecialidadesEntrenador.objects.first()
                     Entrenadores.objects.create(
                         id_usuario_entrenador_fk=usuario,
                         id_especialidad_entrenador_fk=esp_ent,
                         estado_entrenador=1
                     )
-                elif rol_codigo == "FUN":
+                elif rol_codigo in ["FUN", "FUNCIONARIO"]:
                     dep_fun = DependenciasFuncionario.objects.first()
                     est_fun = EstadosFuncionario.objects.first()
                     Funcionarios.objects.create(
@@ -176,16 +175,30 @@ def register_view(request):
                         id_dependencia_funcionario_fk=dep_fun,
                         id_estado_funcionario_fk=est_fun
                     )
+                elif rol_codigo in ["ADM", "ADMINISTRADOR"]:
+                    from apps.usuarios.models import NivelesAdministrador
+                    nivel_adm = NivelesAdministrador.objects.first()
+                    Administradores.objects.create(
+                        id_usuario_administrador_fk=usuario,
+                        id_nivel_acceso_administrador_fk=nivel_adm,
+                        estado_administrador=1
+                    )
 
+                # Iniciar sesión automáticamente
                 login(request, user)
                 messages.success(request, "Registro completado exitosamente.")
 
-                if rol_codigo == "APR":
+                # Redirección garantizada según el rol
+                if rol_codigo in ["APR", "APRENDIZ"]:
                     return redirect("learner_dashboard")
-                elif rol_codigo == "ENT":
+                elif rol_codigo in ["ENT", "ENTRENADOR"]:
                     return redirect("coach_dashboard")
-                elif rol_codigo == "FUN":
+                elif rol_codigo in ["FUN", "FUNCIONARIO"]:
                     return redirect("staff_dashboard")
+                elif rol_codigo in ["ADM", "ADMINISTRADOR"]:
+                    return redirect("admin_dashboard")
+                else:
+                    return redirect("learner_dashboard")
 
         except Exception as e:
             messages.error(request, f"Ocurrió un error al procesar el registro: {str(e)}")

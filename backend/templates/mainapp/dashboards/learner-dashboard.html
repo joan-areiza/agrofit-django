@@ -91,38 +91,32 @@
         <nav class="nav-barra-lateral">
 
             <div class="item-nav">
-                <a href="{% url 'learner_dashboard' %}" class="enlace-nav activo">
+                <a href="{% url 'coach_dashboard' %}" class="enlace-nav activo">
                     <ion-icon name="home"></ion-icon> Inicio
                 </a>
             </div>
 
             <div class="item-nav">
                 <a href="#" class="enlace-nav">
-                    <ion-icon name="person"></ion-icon> Medidas
+                    <ion-icon name="clipboard"></ion-icon> Control de Rutinas
                 </a>
             </div>
 
             <div class="item-nav">
                 <a href="#" class="enlace-nav">
-                    <ion-icon name="barbell"></ion-icon> Semana de Adaptación
+                    <ion-icon name="person"></ion-icon> Consultar Aprendices
                 </a>
             </div>
 
             <div class="item-nav">
                 <a href="#" class="enlace-nav">
-                    <ion-icon name="clipboard"></ion-icon> Rutinas
+                    <ion-icon name="checkmark-circle"></ion-icon> Validar Asistencia
                 </a>
             </div>
 
             <div class="item-nav">
                 <a href="#" class="enlace-nav">
-                    <ion-icon name="checkmark-circle"></ion-icon> Asistencia
-                </a>
-            </div>
-
-            <div class="item-nav">
-                <a href="#" class="enlace-nav">
-                    <ion-icon name="sparkles"></ion-icon> Progreso
+                    <ion-icon name="clipboard"></ion-icon> Registrar Medidas
                 </a>
             </div>
 
@@ -132,13 +126,13 @@
                 </a>
             </div>
 
+            <!-- Cierre de sesión -->
             <div class="item-nav">
                 <a href="{% url 'logout' %}" class="enlace-nav btn-logout" id="btnLogout">
                     <ion-icon name="exit"></ion-icon> Cerrar Sesión
                 </a>
             </div>
-        </nav>
-        <!-- Pie de la barra lateral: créditos institucionales -->
+        </nav>        <!-- Pie de la barra lateral: créditos institucionales -->
         <footer class="pie-barra-lateral">
             <p>&copy; 2026 Todos los derechos reservados | <a href="https://www.sena.edu.co/" target="_blank">SENA</a></p>
             <a href="#" title="Página del SENA" target="_blank">Términos & Privacidad</a>

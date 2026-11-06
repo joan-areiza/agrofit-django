@@ -51,3 +51,4 @@ if (hero_login_btn) {
     window.addEventListener('resize', updateActive);
     updateActive();
 })();
+

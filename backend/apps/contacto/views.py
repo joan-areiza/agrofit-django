@@ -52,32 +52,37 @@ def estados_contacto_list(request):
         },
     )
 
-# Formulario público de contacto
 def contacto_enviar(request):
-    """Procesa y guarda los mensajes de contacto en la tabla mensajes_contacto de la BD."""
     if request.method == "POST":
-        nombres = request.POST.get("nombres_remitente")
-        correo = request.POST.get("correo_remitente")
-        titulo = request.POST.get("titulo_mensaje")
-        contenido = request.POST.get("contenido_mensaje")
+        nombres = request.POST.get("nombres_remitente", "").strip()
+        correo = request.POST.get("correo_remitente", "").strip()
+        titulo = request.POST.get("titulo_mensaje", "").strip()
+        contenido = request.POST.get("contenido_mensaje", "").strip()
 
         if nombres and correo and titulo and contenido:
-            # Obtener el estado 'Pendiente' o crear el primer estado por defecto
-            estado_contacto = EstadosContacto.objects.filter(nombre_estado__iexact="Pendiente").first()
-            if not estado_contacto:
-                estado_contacto = EstadosContacto.objects.first()
+            estado = (
+                EstadosContacto.objects.filter(nombre_estado__iexact="Pendiente").first()
+            )
+            if not estado:
+                messages.error(
+                    request,
+                    "No hay estados de contacto en la base de datos. Crea al menos uno (ej. Pendiente).",
+                )
+                return redirect("contacto_enviar")
 
             MensajesContacto.objects.create(
                 nombres_remitente=nombres,
                 correo_remitente=correo,
                 titulo_mensaje=titulo,
                 contenido_mensaje=contenido,
-                fecha_envio=datetime.now(),
-                id_estado_contacto_fk=estado_contacto
+                id_estado_contacto_fk=estado,
             )
-            messages.success(request, "Tu mensaje ha sido enviado exitosamente. Pronto nos pondremos en contacto contigo.")
+            messages.success(
+                request,
+                "Tu mensaje ha sido enviado exitosamente. Pronto nos pondremos en contacto contigo.",
+            )
             return redirect("contacto_enviar")
-        else:
-            messages.warning(request, "Por favor diligencia todos los campos del formulario.")
 
-    return render(request, "contacto/contact.html")
+        messages.warning(request, "Por favor diligencia todos los campos del formulario.")
+
+    return render(request, "contacto/contact.html", {"title": "Contacto"})
